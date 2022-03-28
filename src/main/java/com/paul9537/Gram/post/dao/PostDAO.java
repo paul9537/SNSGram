@@ -18,4 +18,6 @@ public interface PostDAO {
 	
 	public List<Post> selectPost();
 
+
+	
 }

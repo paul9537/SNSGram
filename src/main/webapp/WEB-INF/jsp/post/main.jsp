@@ -25,24 +25,24 @@
 		<section>
 			
 
-			<c:forEach var="post" items="${postList }" >
+			<c:forEach var="postDetail" items="${postList }" >
 			<div class="d-flex align-items-center justify-content-center">
 				<div class="post-box border rounded my-5">
 					<!-- 아이디 게시물 삭제/수정 -->
 					<div class="post-box-top d-flex justify-content-between">
-						<div class="userId mt-3 ml-5 font-weight-bold">${post.userName }</div>
+						<div class="userId mt-3 ml-5 font-weight-bold">${postDetail.post.userName }</div>
 						<a href="#" class="btn w-btn-red mt-2 mr-2 h-50">삭제/수정</a>
 					</div>
 					
 					<!-- 게시물 이미지 -->
 					<div class="d-flex justify-content-center">
-						<img class="post-image" src="${post.imagePath }" alt="게시물 사진">
+						<img class="post-image" src="${postDetail.post.imagePath }" alt="게시물 사진">
 					</div>
 					
 					<!-- 좋아요 -->
 					<div class="d-flex">
-						<a href="#" data-post-id="${post.id }" class="likeBtn like-box ml-4 mt-3 mb-2"><i class="bi bi-heart"></i></a>
-						<div class="ml-2 mt-3">좋아요 11개</div>
+						<a href="#" data-post-id="${postDetail.post.id }" class="likeBtn like-box ml-4 mt-3 mb-2"><i class="bi bi-heart"></i></a>
+						<div class="ml-2 mt-3">${postDetail.likeCount }</div>
 					</div>
 					
 					<!-- 게시물 내용 -->
@@ -59,8 +59,8 @@
 					
 					<!-- 게시물 댓글 달기 -->
 					<div class="add-reply-box d-flex">
-						<input id="commentInput${post.id }" type="text" class="form-control col-10 ml-1 mt-1">
-						<button type="button" class="commentBtn btn w-btn-red ml-1 mt-1" data-post-id="${post.id }">댓글달기</button>
+						<input id="commentInput${postDetail.post.id }" type="text" class="form-control col-10 ml-1 mt-1">
+						<button type="button" class="commentBtn btn w-btn-red ml-1 mt-1" data-post-id="${postDetail.post.id }">댓글달기</button>
 					</div>
 				</div>
 			</div>

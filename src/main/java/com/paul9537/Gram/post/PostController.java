@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.paul9537.Gram.post.bo.PostBO;
-import com.paul9537.Gram.post.model.Post;
+import com.paul9537.Gram.post.model.PostDetail;
 
 @Controller
 @RequestMapping("/post")
@@ -21,7 +21,7 @@ public class PostController {
 	@GetMapping("/main_view")
 	public String mainView(Model model) {
 		
-		List<Post> postList = postBO.getContents();
+		List<PostDetail> postList = postBO.getPostList();
 		
 		model.addAttribute("postList", postList);
 		

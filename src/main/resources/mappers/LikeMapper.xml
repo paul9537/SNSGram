@@ -17,4 +17,12 @@
 		)
 	</insert>
 
+	<select id="selectLikeCount" parameterType="int" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			`like`
+		WHERE
+			`postId` = #{postId}
+	</select>
 </mapper>
