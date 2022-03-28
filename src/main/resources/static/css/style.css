@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+#wrap {
+	width:1200px;
+}
+
+header {
+	height:70px;
+	background-color:#ef9373;
+}
+
+section {
+	height:auto;
+	background-color:#fef9f8;
+}
+
+.signup-box {
+	width:400px;
+	height:450px;
+	background-color:#dddddd;
+}
+
+.post-box {
+	width:600px;
+	height:820px;
+}
+
+.post-box-top {
+	height:80px;
+}
+
+.post-image {
+	width:500px;
+	height:500px;
+}
+
+.input-box {
+	width:600px;
+	height:700px;
+}
+
+.input-image-box {
+	width:500px;
+	height:400px;
+}
+
+.reply-box {
+	height:100px;
+}
+footer {
+	height:70px;
+}
+
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-skin {
+    background-color: #f8e6e0;
+    color: #6e6e6e;
+}
+.w-btn-red {
+    background-color: #ff5f2e;
+    color: #e1eef6;
+}
+
+.btn {
+	    position: relative;
+        border: none;
+        display: inline-block;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.big-icon {
+	font-size:20px;
+}
+
+
+
