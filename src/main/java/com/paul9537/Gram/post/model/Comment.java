@@ -2,12 +2,12 @@ package com.paul9537.Gram.post.model;
 
 import java.util.Date;
 
-public class Post {
+public class Comment {
 	private int id;
+	private int postId;
 	private int userId;
 	private String userName;
-	private String content;
-	private String imagePath;
+	private String comment;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -15,6 +15,12 @@ public class Post {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getPostId() {
+		return postId;
+	}
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	public int getUserId() {
 		return userId;
@@ -28,17 +34,11 @@ public class Post {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getContent() {
-		return content;
+	public String getComment() {
+		return comment;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -52,4 +52,6 @@ public class Post {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+
 }

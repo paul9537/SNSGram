@@ -23,8 +23,7 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<section>
-			
-
+		
 			<c:forEach var="postDetail" items="${postList }" >
 			<div class="d-flex align-items-center justify-content-center">
 				<div class="post-box border rounded my-5">
@@ -42,19 +41,21 @@
 					<!-- 좋아요 -->
 					<div class="d-flex">
 						<a href="#" data-post-id="${postDetail.post.id }" class="likeBtn like-box ml-4 mt-3 mb-2"><i class="bi bi-heart"></i></a>
-						<div class="ml-2 mt-3">${postDetail.likeCount }</div>
+						<div class="ml-2 mt-3">좋아요 ${postDetail.likeCount } 개</div>
 					</div>
 					
 					<!-- 게시물 내용 -->
 					<div class="d-flex ml-3">
-						<div class="font-weight-bold ml-2">paul9537</div>
-						<div class="ml-2">맛있겠다</div>
+						<div class="font-weight-bold ml-2">${postDetail.post.userName }</div>
+						<div class="ml-2">${postDetail.post.content }</div>
 					</div>
 					
 					<!-- 게시물 댓글 -->
 					<div class="reply-box border rounded d-flex mt-3 ml-1 mr-1">
-						<div class="font-weight-bold ml-2 mt-2">아무나</div>
-						<div class="ml-2 mt-2">여기 어디에요?</div>
+						<%for(int i = 0; i < ${postDetail.commentList}.size(); i++) { %>
+						<div class="font-weight-bold ml-2 mt-2">${postDetail.commentList }</div>
+						<div class="ml-2 mt-2">${postDetail.commentList }.get(i)</div>
+						<%} %>
 					</div>
 					
 					<!-- 게시물 댓글 달기 -->
@@ -66,7 +67,6 @@
 			</div>
 			</c:forEach>
 
-			
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />

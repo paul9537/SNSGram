@@ -23,5 +23,19 @@
 		)
 	</insert>
 
+	<select id="selectPostComment" parameterType="int" resultType="com.paul9537.Gram.post.model.Comment">
+		SELECT
+			`id`
+			, `postId`
+			, `userId`
+			, `userName`
+			, `comment`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`comment`
+		WHERE
+			`postId` = #{postId}
+	</select>
 </mapper>
 
