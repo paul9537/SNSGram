@@ -40,7 +40,16 @@
 					
 					<!-- 좋아요 -->
 					<div class="d-flex">
-						<a href="#" data-post-id="${postDetail.post.id }" class="likeBtn like-box ml-4 mt-3 mb-2"><i class="bi bi-heart"></i></a>
+						<c:choose>
+							<c:when test="${postDetail.like }" >
+							<%-- 좋아요 빨갛고 가득찬 하트 --%>
+							<a href="#" class="unlikeBtn ml-4 mt-2 mb-2" data-post-id="${postDetail.post.id }"><i class="bi bi-heart-fill heart-icon text-danger"></i></a>
+							</c:when>
+							<c:otherwise>
+							<%-- 비어있는 상태 --%>
+								<a href="#" data-post-id="${postDetail.post.id }" class="likeBtn like-box ml-4 mt-3 mb-2"><i class="bi bi-heart"></i></a>
+							</c:otherwise>
+						</c:choose>
 						<div class="ml-2 mt-3">좋아요 ${postDetail.likeCount } 개</div>
 					</div>
 					
@@ -52,10 +61,10 @@
 					
 					<!-- 게시물 댓글 -->
 					<div class="reply-box border rounded d-flex mt-3 ml-1 mr-1">
-						<%for(int i = 0; i < ${postDetail.commentList}.size(); i++) { %>
-						<div class="font-weight-bold ml-2 mt-2">${postDetail.commentList }</div>
-						<div class="ml-2 mt-2">${postDetail.commentList }.get(i)</div>
-						<%} %>
+						<c:forEach var="comment" items="${postDetail.commentList }" >
+						<div class="font-weight-bold ml-2 mt-2">${comment.userName }</div>
+						<div class="ml-2 mt-2">${comment.content }</div>
+						</c:forEach>
 					</div>
 					
 					<!-- 게시물 댓글 달기 -->
@@ -125,6 +134,29 @@
 					error:function() {
 						alert("댓글 에러");
 					}
+				});
+			});
+			
+			$(".unlikeBtn").on("click", function(e) {
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/unlike",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.result == "success") {
+							location.reload();							
+						} else {
+							alert("좋아요 취소 실패");
+						}
+					},
+					error:function() {
+						alert("좋아요 취소 에러");
+					}
+					
 				});
 			});
 			

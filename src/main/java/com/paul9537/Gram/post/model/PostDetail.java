@@ -6,6 +6,7 @@ public class PostDetail {
 	private Post post;
 	private int likeCount;
 	private List<Comment> commentList;
+	private boolean isLike;
 	
 	public List<Comment> getCommentList() {
 		return commentList;
@@ -24,6 +25,12 @@ public class PostDetail {
 	}
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
+	}
+	public boolean isLike() {
+		return isLike;
+	}
+	public void setLike(boolean isLike) {
+		this.isLike = isLike;
 	}
 
 	

@@ -36,7 +36,7 @@ public class PostBO {
 		return postDAO.selectPost();
 	}
 	
-	public List<PostDetail> getPostList() {
+	public List<PostDetail> getPostList(int userId) {
 		
 		List<Post> postList = postDAO.selectPost();
 		
@@ -51,6 +51,9 @@ public class PostBO {
 			// 댓글 얻어 오기
 			List<Comment> commentList = commentBO.getComment(post.getId());
 			
+			// 로그인한 사용자가 좋아요를 눌렀는지 여부
+			boolean isLike = likeBO.isLike(post.getId(), userId);
+			
 			PostDetail postDetail = new PostDetail();
 			// post 데이터 set
 			postDetail.setPost(post);
@@ -58,7 +61,8 @@ public class PostBO {
 			postDetail.setLikeCount(likeCount);
 			// 댓글 리스트 set
 			postDetail.setCommentList(commentList);
-			
+			// 라이크 set 
+			postDetail.setLike(isLike);
 			
 			postDetailList.add(postDetail);
 		}
