@@ -38,4 +38,25 @@
 		ORDER BY `id` DESC
 	</select>
 	
+	<delete id="deletePost" parameterType="map">
+		DELETE FROM
+			`post`
+		WHERE
+			`postId` = #{postId}
+	</delete>
+	
+	<select id="selectPostByPostId" parameterType="int" resultType="com.paul9537.Gram.post.model.Post">
+		SELECT
+			`id`
+			, `userId`
+			, `userName`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+	</select>
 </mapper>

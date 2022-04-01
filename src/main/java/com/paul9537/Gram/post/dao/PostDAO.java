@@ -10,12 +10,17 @@ import com.paul9537.Gram.post.model.Post;
 @Repository
 public interface PostDAO {
 
-	public int insertPost(
+	public int insertPost (
 			@Param("userId") int userId,
 			@Param("userName") String userName,
 			@Param("content") String content,
 			@Param("imagePath") String imagePath);
 
 	public List<Post> selectPost();
+	
+	public int deletePost (
+			@Param("postId") int postId);
+	
+	public Post selectPostByPostId(@Param("postId") int postId);
 	
 }

@@ -23,14 +23,20 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<section>
-		
+			
+			<%-- 피드 --%>
 			<c:forEach var="postDetail" items="${postList }" >
 			<div class="d-flex align-items-center justify-content-center">
 				<div class="post-box border rounded my-5">
+				
 					<!-- 아이디 게시물 삭제/수정 -->
 					<div class="post-box-top d-flex justify-content-between">
 						<div class="userId mt-3 ml-5 font-weight-bold">${postDetail.post.userName }</div>
-						<a href="#" class="btn w-btn-red mt-2 mr-2 h-50">삭제/수정</a>
+						<div class="more-icon" >
+							<a class="moreBtn text-dark" href="#" data-toggle="modal" data-target="#moreModal" data-post-id="${postDetail.post.id }"> 
+								<i class="bi bi-three-dots-vertical"></i> 
+							</a>
+						</div>
 					</div>
 					
 					<!-- 게시물 이미지 -->
@@ -60,10 +66,12 @@
 					</div>
 					
 					<!-- 게시물 댓글 -->
-					<div class="reply-box border rounded d-flex mt-3 ml-1 mr-1">
+					<div class="reply-box border rounded mt-3 ml-1 mr-1">
 						<c:forEach var="comment" items="${postDetail.commentList }" >
-						<div class="font-weight-bold ml-2 mt-2">${comment.userName }</div>
-						<div class="ml-2 mt-2">${comment.content }</div>
+							<div class="d-flex">
+								<div class="font-weight-bold ml-2 mt-2">${comment.userName }</div>
+								<div class="ml-2 mt-2">${comment.comment }</div>
+							</div>
 						</c:forEach>
 					</div>
 					
@@ -81,9 +89,53 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
 	
+	<!-- Modal -->
+	<div class="modal fade" id="moreModal">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	     
+	      <div class="modal-body text-center">
+	       	<a href="#" id="deleteBtn">삭제하기 </a>
+	      </div>
+	    
+	    </div>
+	  </div>
+	</div>
+
 	<script>
 		$(document).ready(function() {
 			
+			$(".moreBtn").on("click", function() {
+				let postId = $(this).data("post-id");
+
+				$("#deleteBtn").data("post-id", postId);
+				// <a href="" data-post-id="3">
+			});
+			
+			$("#deleteBtn").on("click", function(e) {
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/delete",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("게시물 삭제 실패");
+						}
+					},
+					error:function() {
+						alert("게시물 삭제 에러");
+					}
+				});
+			});
+				
+
+				
 			$(".likeBtn").on("click", function(e) {
 				e.preventDefault();
 				
@@ -105,6 +157,29 @@
 					}
 				});
 			});
+			
+			$(".unlikeBtn").on("click", function(e) {
+				e.preventDefault();
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/unlike",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.result == "success") {
+							location.reload();							
+						} else {
+							alert("좋아요 취소 실패");
+						}
+					},
+					error:function() {
+						alert("좋아요 취소 에러");
+					}
+					
+				});
+			});			
 			
 			$(".commentBtn").on("click", function() {
 				
@@ -136,34 +211,11 @@
 					}
 				});
 			});
-			
-			$(".unlikeBtn").on("click", function(e) {
-				e.preventDefault();
-				
-				let postId = $(this).data("post-id");
-				
-				$.ajax({
-					type:"get",
-					url:"/post/unlike",
-					data:{"postId":postId},
-					success:function(data) {
-						if(data.result == "success") {
-							location.reload();							
-						} else {
-							alert("좋아요 취소 실패");
-						}
-					},
-					error:function() {
-						alert("좋아요 취소 에러");
-					}
-					
-				});
-			});
-			
+
 			
 		});
 	
-	
 	</script>
+	
 </body>
 </html>
