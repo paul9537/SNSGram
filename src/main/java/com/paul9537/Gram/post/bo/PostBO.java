@@ -29,7 +29,6 @@ public class PostBO {
 		String filePath = FileManagerService.saveFile(userId, file);
 		
 		return postDAO.insertPost(userId, userName, content, filePath);
-		
 	}
 	
 	public List<Post> getContents() {

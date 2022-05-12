@@ -49,7 +49,7 @@
 						<c:choose>
 							<c:when test="${postDetail.like }" >
 							<%-- 좋아요 빨갛고 가득찬 하트 --%>
-							<a href="#" class="unlikeBtn ml-4 mt-2 mb-2" data-post-id="${postDetail.post.id }"><i class="bi bi-heart-fill heart-icon text-danger"></i></a>
+								<a href="#" class="unlikeBtn ml-4 mt-2 mb-2" data-post-id="${postDetail.post.id }"><i class="bi bi-heart-fill heart-icon text-danger"></i></a>
 							</c:when>
 							<c:otherwise>
 							<%-- 비어있는 상태 --%>
